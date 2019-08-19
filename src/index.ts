@@ -29,13 +29,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 
 import * as config from "./pbs-config/config.json";
-
+import "../style/index.css";
 /**
  * The class names for the PBS extension icon, for launcher and
  * tab, respectively
  */
-// const PBS_ICON_CLASS_L = 'jp-PbsLaunchIcon';
-// const PBS_ICON_CLASS_T = 'jp-PbsTabIcon';
+const PBS_ICON_CLASS_L = "jp-PbsLaunchIcon";
+const PBS_ICON_CLASS_T = "jp-PbsTabIcon";
 
 // The number of milliseconds a user must wait in between Refresh requests
 // This limits the number of times qstat is called, in order to avoid
@@ -51,7 +51,7 @@ class PbsWidget extends Widget {
   // The column index of job ID
   readonly JOBID_IDX = 0;
   // The column index of the username
-  readonly USER_IDX = 3;
+  readonly USER_IDX = 1;
   // A cache for storing global queue data
   private dataCache: DataTables.Api;
   // The system username, fetched from the server
@@ -579,12 +579,12 @@ function activate(
   const command: string = "pbs:open";
   app.commands.addCommand(command, {
     label: args => (args["isPalette"] ? "Open PBS Queue Manager" : "PBS Queue"),
-    // iconClass: args => (args['isPalette'] ? '' : PBS_ICON_CLASS_L),
+    iconClass: args => (args["isPalette"] ? "" : PBS_ICON_CLASS_L),
     execute: () => {
       if (!widget) {
         // Instantiate a new widget if one does not exist
         widget = new PbsWidget();
-        // widget.title.icon = PBS_ICON_CLASS_T;
+        widget.title.icon = PBS_ICON_CLASS_T;
         // Reload table on regular intervals if autoReload is activated
         if (config["autoReload"]) {
           setInterval(() => widget.update(), config["autoReloadRate"]);
