@@ -1,0 +1,9 @@
+{
+  "qstatURL": "/qstat",
+  "autoReload": false,
+  "autoReloadRate": 60000,
+  "queueCols": ["Job id", "Name", "User", "Time Use", "S", "Queue"],
+  "cutoff": 16,
+  "wordbreak": true,
+  "escapeHtml": true
+}

@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "lib": ["es2015", "dom"],
+    "lib": ["ES6", "ES2016", "DOM"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "noEmitOnError": true,
     "noUnusedLocals": true,
     "outDir": "lib",
     "rootDir": "src",
     "strict": true,
     "strictNullChecks": false,
-    "target": "es2015",
+    "target": "ES5",
+    "noImplicitAny": false,
     "types": []
   },
   "include": ["src/*"]
