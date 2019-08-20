@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Update conda & Install packages
           command: |
-            conda config --set always_yes yes --set changeps1 no
+            conda config --set always_yes yes --set changeps1 no --set quiet true
             conda update -q conda
             conda config --add channels conda-forge
             conda init bash && source ~/.bashrc
@@ -28,11 +28,13 @@ jobs:
       - run:
           name: Install the extension
           command: |
+            conda activate circleci
             jlpm install
 
       - run:
           name: Run Client Tests
           command: |
+            conda activate circleci
             jlpm build
             jlpm test
 
