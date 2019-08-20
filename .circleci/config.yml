@@ -1,0 +1,32 @@
+version: 2.1
+jobs:
+  build-test:
+    docker:
+      - image: conda/miniconda3:latest
+    steps:
+      - checkout 
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Update conda & Install packages 
+          command: |
+            conda config --set always_yes yes --set changeps1 no
+            conda update -q conda 
+            conda config --add channels conda-forge
+            conda init bash && source ~/.bashrc
+            conda create -q -n circleci python=3.7
+            conda activate circleci 
+            conda install jupyterlab nodejs pytest
+            conda info -a 
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build-test 
