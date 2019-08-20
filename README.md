@@ -1,11 +1,10 @@
 # jupyterlab-pbs
 
- A JupyterLab extension to interface with PBS scheduler
-
+A JupyterLab extension to interface with PBS scheduler
 
 ## Prerequisites
 
-* JupyterLab
+- JupyterLab
 
 ## Installation
 
@@ -30,3 +29,9 @@ npm run build
 jupyter lab build
 ```
 
+### Directory structure
+
+- `package.json` contains information about the extension such as dependencies
+- `tsconfig.json` contains information for the typescript compilation
+- `src/index.ts` _this contains the actual code of our extension_
+- `style/index.css` contains style elements that we can use

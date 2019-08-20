@@ -1,0 +1,21 @@
+{
+  "qstatURL": "/qstat",
+  "autoReload": false,
+  "autoReloadRate": 60000,
+  "queueCols": [
+    "Job ID",
+    "Username",
+    "Queue",
+    "Jobname",
+    "SessID",
+    "NDS",
+    "TSK",
+    "Req'd Memory",
+    "Req'd Time",
+    "S",
+    "Elap Time"
+  ],
+  "cutoff": 16,
+  "wordbreak": true,
+  "escapeHtml": true
+}
