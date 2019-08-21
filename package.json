@@ -29,7 +29,8 @@
     "build": "tsc",
     "clean": "rimraf lib",
     "prepare": "npm run clean && npm run build",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "test": "mocha"
   },
   "dependencies": {
     "@jupyterlab/application": "^1.0.4",
@@ -55,7 +56,8 @@
   },
   "devDependencies": {
     "rimraf": "^3.0.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "mocha": "^6.2.0"
   },
   "jupyterlab": {
     "extension": true
