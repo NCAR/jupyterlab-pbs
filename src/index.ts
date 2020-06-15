@@ -1,6 +1,6 @@
 import {
   JupyterFrontEnd,
-  JupyterFrontEndPlugin,
+  JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
 import { requestAPI } from './jupyterlab-pbs';
@@ -15,15 +15,15 @@ const extension: JupyterFrontEndPlugin<void> = {
     console.log('JupyterLab extension jupyterlab-pbs is activated!');
 
     requestAPI<any>('get_example')
-      .then((data) => {
+      .then(data => {
         console.log(data);
       })
-      .catch((reason) => {
+      .catch(reason => {
         console.error(
           `The jupyterlab_pbs server extension appears to be missing.\n${reason}`
         );
       });
-  },
+  }
 };
 
 export default extension;
