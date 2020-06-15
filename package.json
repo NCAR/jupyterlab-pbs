@@ -1,13 +1,11 @@
 {
-  "name": "jupyterlab-pbs",
+  "name": "@ncarxdev/jupyterlab-pbs",
   "version": "0.1.0",
-  "description": " A JupyterLab extension to interface with PBS Workload Manager.",
+  "description": " A JupyterLab extension to interface with PBS scheduler",
   "keywords": [
     "jupyter",
     "jupyterlab",
-    "jupyterlab-extension",
-    "PBSPro",
-    "HPC"
+    "jupyterlab-extension"
   ],
   "homepage": "https://github.com/NCAR/jupyterlab-pbs",
   "bugs": {
@@ -21,45 +19,57 @@
   ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "style": "style/index.css",
   "repository": {
     "type": "git",
     "url": "https://github.com/NCAR/jupyterlab-pbs.git"
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "rimraf lib",
-    "prepare": "npm run clean && npm run build",
-    "watch": "tsc -w",
-    "test": "mocha"
+    "build": "jlpm run build:lib",
+    "build:labextension": "cd jupyterlab_pbs && rimraf labextension && mkdirp labextension && cd labextension && npm pack ../..",
+    "build:lib": "tsc",
+    "build:all": "jlpm run build:labextension",
+    "clean": "jlpm run clean:lib",
+    "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
+    "clean:labextension": "rimraf jupyterlab_pbs/labextension",
+    "clean:all": "jlpm run clean:lib && jlpm run clean:labextension",
+
+    "eslint": "eslint . --ext .ts,.tsx --fix",
+    "eslint:check": "eslint . --ext .ts,.tsx",
+    "prepare": "jlpm run clean && jlpm run build",
+    "watch": "tsc -w"
   },
   "dependencies": {
-    "@jupyterlab/application": "^1.0.4",
-    "@jupyterlab/apputils": "^1.0.4",
-    "@jupyterlab/coreutils": "^3.0.0",
-    "@jupyterlab/launcher": "^1.0.4",
-    "@phosphor/messaging": "^1.3.0",
-    "@phosphor/widgets": "^1.9.0",
-    "@types/bootstrap": "^4.3.1",
-    "@types/datatables.net": "^1.10.17",
-    "@types/datatables.net-buttons": "^1.4.2",
-    "@types/datatables.net-select": "^1.2.6",
-    "@types/node": "^12.7.2",
-    "bootstrap": "^4.3.1",
-    "datatables": "^1.10.18",
-    "datatables.net-buttons-dt": "^1.5.6",
-    "datatables.net-dt": "^1.10.19",
-    "datatables.net-plugins": "^1.10.19",
-    "datatables.net-select-dt": "^1.3.0",
-    "fs-extra": "^8.1.0",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.15.0"
+    "@jupyterlab/application": "^2.0.0",
+    "@jupyterlab/coreutils": "^4.0.0",
+    "@jupyterlab/services": "^5.0.0"
+
   },
   "devDependencies": {
-    "rimraf": "^3.0.0",
-    "typescript": "~3.5.3",
-    "mocha": "^6.2.0"
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "mkdirp": "^1.0.3",
+    "prettier": "1.16.4",
+    "rimraf": "^2.6.1",
+    "typescript": "~3.7.0"
   },
+  "sideEffects": [
+    "style/*.css"
+  ],
   "jupyterlab": {
+    "discovery": {
+        "server": {
+          "managers": [
+            "pip"
+          ],
+          "base": {
+            "name": "jupyterlab_pbs"
+          }
+        }
+    },
     "extension": true
   }
 }
