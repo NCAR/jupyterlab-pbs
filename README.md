@@ -2,6 +2,13 @@
 
 ![Github Actions Status](https://github.com/NCAR/jupyterlab-pbs/workflows/Build/badge.svg)
 
+⚠️ Warning
+
+This project is no longer being actively maintained and there are no plans to update it in the future. As such, we cannot guarantee that the code and resources contained in this repository are up-to-date or secure.
+
+We strongly advise you to exercise caution if you decide to continue using or building upon the work that has been done here. You should carefully review and test any code that you plan to use, and you should be aware that there may be security vulnerabilities or other issues that could impact your project.
+
+
 A JupyterLab extension to interface with PBS scheduler
 
 This extension is composed of a Python package named `jupyterlab_pbs`
